@@ -1,7 +1,6 @@
 import UIKit
 import Foundation
 
-
 // String -> [Int]
 let intString = "27384782"
 let intStringToArray = intString.map{String($0)}
@@ -38,6 +37,4 @@ print(strReplaceResult) // ung?chun?
 // Character.repeat
 let stringRepeat = String(repeating: "ㅋ", count: 10)
 print(stringRepeat) // "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"
-
-
 
