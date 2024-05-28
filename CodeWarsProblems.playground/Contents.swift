@@ -85,51 +85,48 @@ func findIt(_ seq: [Int]) -> Int {
   return 0
 }
 
-
-
-var stride_result = ""
-for i in stride(from: 3, to: 12, by: 3) {
-    stride_result += String(i)
+func rgb(_ r: Int, _ g: Int, _ b: Int) -> String {
+    
+    func converToLetter(_ mod: Int) -> String
+        {
+            switch(mod) {
+            case 0:
+                return "0"
+            case 10:
+                return "A"
+            case 11:
+                return "B"
+            case 12:
+                return "C"
+            case 13:
+                return "D"
+            case 14:
+                return "E"
+            case 15:
+                return "F"
+            default:
+                return String(mod)
+            }
+        }
+        
+        func convertToHex(_ decimal: Int) -> String
+        {
+            if(decimal < 0) { return "00" }
+            if(decimal > 255) { return "FF" }
+            
+            let letter2 = converToLetter(decimal % 16)
+            let number1 = floor(Float(decimal/16))
+            return converToLetter(Int(number1)) + letter2
+        }
+        return convertToHex(r)
+            + convertToHex(g)
+            + convertToHex(b)
 }
-print(stride_result)
-
-// 3 6 9 12
-stride_result = ""
-for i in stride(from: 3, through: 12, by: 3) {
-    stride_result += String(i)
-}
-print(stride_result)
 
 
-let testArray = [1.5, 2.0, 3.4, 4, 5]
-print(testArray, terminator:"")
-let subTestArray = testArray[1...3]
-print(subTestArray, terminator:"")
-// [2, 3, 4]
-let temp = subTestArray.map{String($0)}//.joined(separator: "")
-print(temp, terminator:"")
 
-let temp2 = temp.filter { !" .".contains($0) }
-print(temp2, terminator:"")
+let A = [1,2,3,4,5]
+let B = [5,4,3,2,1]
 
-
-let startIdx = testArray.index(testArray.startIndex, offsetBy: 3)
-print(testArray[startIdx...])
-
-
-let numbers: [Int] = [1, 2, 3]
-var sumFromThree: Int = numbers.reduce(3) {
-    print("\($0) + \($1)")
-    // 3 + 1
-    // 4 + 2
-    // 6 + 3
-    return $0 + $1
-}
-sumFromThree = numbers.reduce(3){ $0 + $1 }
-print(sumFromThree) // 9
-
-
-var result: [Int] = [1, 2, 3, 4]
-result.map{String($0)}.joined() // [1, 2, 3, 4] -> 1234
-result.map{String($0)}.joined(separator: ", ") // [1, 2, 3, 4] -> 1, 2, 3, 4
+let sortedSegments = zip(A, B).sorted { $0.1 < $1.1 }
 
